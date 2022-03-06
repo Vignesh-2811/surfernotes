@@ -5,7 +5,6 @@ import 'package:surfernotes/firebase_options.dart';
 import 'package:surfernotes/verify_email_view.dart';
 import 'package:surfernotes/views/login_view.dart';
 import 'package:surfernotes/views/register_view.dart';
-import 'dart:developer' as devtools show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +18,7 @@ void main() {
       routes: {
         '/login/': (context) => const LoginView(),
         '/register/': (context) => const RegisterView(),
+        '/notes/': (context) => const NotesView(),
       },
     ),
   );
@@ -46,7 +46,6 @@ class HomePage extends StatelessWidget {
             } else {
               return const LoginView();
             }
-            return const Text('Done');
 
           default:
             return const CircularProgressIndicator();
@@ -88,7 +87,7 @@ class _NotesViewState extends State<NotesView> {
             },
             itemBuilder: (context) {
               return const [
-                const PopupMenuItem<MenuAction>(
+                PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
                   child: Text('Log out'),
                 ),
